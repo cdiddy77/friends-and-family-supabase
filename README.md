@@ -35,14 +35,17 @@ Features strict admin-controlled user management and SMS-based "magic link" auth
 ### 2. Environment Variables
 
 **Frontend (`.env.local`)**:
+
 ```bash
 NEXT_PUBLIC_SUPABASE_URL=your_project_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
 SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
 SUPABASE_JWT_SECRET=your_jwt_secret
+SUPABASE_PROJECT_ID=your_project_id
 ```
 
 **Backend (`backend/.env`)**:
+
 ```bash
 SUPABASE_URL=your_project_url
 SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
@@ -54,11 +57,13 @@ TWILIO_PHONE_NUMBER=your_twilio_number
 ### 3. Install Dependencies
 
 **Frontend**:
+
 ```bash
-npm install
+yarn install
 ```
 
 **Backend**:
+
 ```bash
 cd backend
 uv sync
@@ -82,7 +87,7 @@ uv run python admin.py invite "+15551234567" --send --url "https://your-producti
 ### Running the Website
 
 ```bash
-npm run dev
+yarn dev
 ```
 
 Visit `http://localhost:3000/activate?code=...` to test the flow.
@@ -98,3 +103,4 @@ Visit `http://localhost:3000/activate?code=...` to test the flow.
 
 - **Session Expiry**: The custom JWT is set to expire in 1 year.
 - **Security**: The `SUPABASE_SERVICE_ROLE_KEY` and `SUPABASE_JWT_SECRET` are sensitive. Never expose them to the client (they are only used in Server Components/API Routes).
+- **Types**: Run `yarn update-types` to refresh TypeScript definitions from your Supabase project (requires Supabase CLI and `SUPABASE_PROJECT_ID` env var).

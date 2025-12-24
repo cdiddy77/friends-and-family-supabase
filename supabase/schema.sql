@@ -7,6 +7,4 @@ create table public.invites (
   redeemed_at timestamptz,
   denied boolean default false
 );
-
 alter table public.invites enable row level security;
-
